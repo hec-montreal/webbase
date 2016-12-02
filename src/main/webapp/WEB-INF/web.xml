@@ -36,7 +36,7 @@
 
 	<servlet-mapping>
 		<servlet-name>webbase</servlet-name>
-		<url-pattern>/app/*</url-pattern>
+		<url-pattern>/svc/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
