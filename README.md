@@ -10,7 +10,9 @@ git clone https://github.com/hec-montreal/webbase
 mvn eclipse:eclipse
 ```
 3 - Import project in eclipse
+
 4 - Convert eclipse project to faceted form
+
 5 - Build project
 ```
 mvn clean package
