@@ -2,3 +2,6 @@
 .project
 .settings
 target
+src/main/webapp/dest
+src/main/webapp/node
+src/main/webapp/node_modules

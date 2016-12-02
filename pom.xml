@@ -13,7 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
@@ -35,7 +35,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -124,23 +124,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
+				
 				<configuration>
-					<webResources>
-						<resource>
-							<directory>${basedir}/src/main/java</directory>
-							<targetPath>WEB-INF/classes</targetPath>
-							<includes>
-								<include>**/*.properties</include>
-								<include>**/*.xml</include>
-								<include>**/*.css</include>
-								<include>**/*.html</include>
-							</includes>
-						</resource>
-					</webResources>
-
-					<attachClasses>true</attachClasses>
-					<classesClassifier>classes</classesClassifier>
+					<warSourceDirectory>${basedir}/src/main/webapp/dest</warSourceDirectory>
 				</configuration>
 			</plugin>
 
@@ -161,6 +147,55 @@
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.27</version>
+
+				<configuration>
+					<workingDirectory>src/main/webapp</workingDirectory>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+
+						<configuration>
+							<nodeVersion>v4.6.0</nodeVersion>
+							<npmVersion>3.10.8</npmVersion>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>npm install</id>
+
+						<goals>
+							<goal>npm</goal>
+						</goals>
+
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>gulp build</id>
+
+						<goals>
+							<goal>gulp</goal>
+						</goals>
+
+						<configuration>
+							<arguments>build</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
